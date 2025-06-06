@@ -20,11 +20,12 @@ public class SauceDemoTest extends BaseClass {
     @Test(priority = 2)
     @Parameters({"validUsername", "validPassword"})
     public void positiveLoginTest(String username, String password) {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(baseUrl);
         driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "Login failed!");
+        Assert.assertTrue(driver.getTitle().equals("Swag Labs"));
         ScreenshotUtility.captureScreenshot(driver, "positiveLogin");
     }
 
@@ -40,6 +41,7 @@ public class SauceDemoTest extends BaseClass {
 
         boolean errorVisible = driver.findElement(By.cssSelector("[data-test='error']")).isDisplayed();
         Assert.assertTrue(errorVisible, "Error message not displayed");
+        Assert.assertTrue(driver.getTitle().equals("Swag Labs"));
         ScreenshotUtility.captureScreenshot(driver, "negativeLogin");
     }
 }
