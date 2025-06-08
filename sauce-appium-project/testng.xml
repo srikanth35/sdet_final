@@ -4,6 +4,7 @@
     <test name="LoginTests">
         <classes>
             <class name="tests.LoginTest"/>
+            <class name="tests.AddToCartTest"></class>
         </classes>
     </test>
     <listeners>
